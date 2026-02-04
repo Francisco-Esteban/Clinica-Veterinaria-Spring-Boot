@@ -10,6 +10,8 @@ import jakarta.validation.constraints.Positive;
 
 public class Producto {
 
+    // ESTRUCTURA DE LA CLASE PRODUCTO, QUE CORRESPONDE A UNA TABLA EN LA BD
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

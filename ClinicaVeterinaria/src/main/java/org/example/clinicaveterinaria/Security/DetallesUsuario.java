@@ -21,17 +21,16 @@ public class DetallesUsuario implements UserDetailsService {
         this.usuarioRepositorio = usuarioRepositorio;
     }
 
+    // CARGAR USUARIO CON SUS DATOS
+
     @Override
     public UserDetails loadUserByUsername(String nombreUsuario) throws UsernameNotFoundException {
 
-        // Buscar el usuario en la base de datos
         Usuario usuario = usuarioRepositorio.findByNombreUsuario(nombreUsuario)
                 .orElseThrow(() -> new UsernameNotFoundException("Usuario no encontrado: " + nombreUsuario));
 
-        // Crear la autoridad (rol) del usuario
         GrantedAuthority autoridad = new SimpleGrantedAuthority(usuario.getRol());
 
-        // Devolver un objeto UserDetails que Spring Security entiende
         return User.builder()
                 .username(usuario.getNombreUsuario())
                 .password(usuario.getContraseña())

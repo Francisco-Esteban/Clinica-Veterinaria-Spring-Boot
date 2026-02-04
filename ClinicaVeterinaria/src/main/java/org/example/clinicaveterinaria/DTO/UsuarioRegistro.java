@@ -6,6 +6,8 @@ import jakarta.validation.constraints.Size;
 
 public class UsuarioRegistro {
 
+    // RECOGER LOS DATOS DEL USUARIO QUE SE ESTA REGISTRANDO, JUNTO A COMPROBACIONES EN CADA CAMPO
+
     @NotBlank(message = "El nombre de usuario es obligatorio")
     @Size(min = 3, max = 50, message = "El nombre de usuario debe tener entre 3 y 50 caracteres")
     private String nombreUsuario;
@@ -18,14 +20,12 @@ public class UsuarioRegistro {
     @Size(min = 6, message = "La contraseña debe tener al menos 6 caracteres")
     private String contraseña;
 
-    @NotBlank(message = "Debes confirmar la contraseña")
+    @NotBlank(message = "Tienes que confirmar la contraseña")
     private String confirmarContraseña;
 
-    // Constructor vacío
     public UsuarioRegistro() {
     }
 
-    // Constructor con parámetros
     public UsuarioRegistro(String nombreUsuario, String email, String contraseña, String confirmarContraseña) {
         this.nombreUsuario = nombreUsuario;
         this.email = email;
@@ -33,7 +33,6 @@ public class UsuarioRegistro {
         this.confirmarContraseña = confirmarContraseña;
     }
 
-    // Getters y Setters
     public String getNombreUsuario() {
         return nombreUsuario;
     }

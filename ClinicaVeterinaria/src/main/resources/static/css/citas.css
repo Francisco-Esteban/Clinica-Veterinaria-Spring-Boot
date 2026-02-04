@@ -1,18 +1,16 @@
-/* RESET BÁSICO */
+/* ESTILO GENERAL */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-/* ESTILOS GENERALES */
 body {
     font-family: Arial, Helvetica, sans-serif;
     background-color: #f5f7f8;
     color: #333;
 }
 
-/* ===== NAVBAR ===== */
 .navbar {
     padding: 15px 20px;
 }
@@ -23,12 +21,11 @@ body {
 
 .hero {
     margin-top: 60px;
-    /* Space for the fixed navbar */
 }
 
 /* ===== ESTILO FORMULARIO DE CITAS ===== */
 
-/* Contenedor del formulario */
+/* CONTENEDOR DEL FORMULARIO  */
 .form-card {
     background-color: white;
     max-width: 600px;
@@ -38,7 +35,8 @@ body {
     box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
 }
 
-/* Título del formulario */
+/* TITULO */
+
 .form-card h2 {
     text-align: center;
     font-size: 28px;
@@ -47,7 +45,7 @@ body {
     margin-bottom: 25px;
 }
 
-/* Labels */
+/* CAMPOS */
 .form-card label {
     display: block;
     font-weight: bold;
@@ -55,7 +53,6 @@ body {
     color: #333;
 }
 
-/* Inputs y selects */
 .form-card input,
 .form-card select {
     width: 100%;
@@ -66,12 +63,12 @@ body {
     font-size: 16px;
 }
 
-/* Botón de enviar */
+/* BOTON PARA ENVIAR */
+
 .form-card button {
     width: 100%;
     padding: 12px;
     background-color: #2e8b57;
-    /* Verde corporativo */
     color: white;
     font-weight: bold;
     border: none;
@@ -85,7 +82,8 @@ body {
     /* Verde más oscuro al hover */
 }
 
-/* Mensaje de éxito */
+/* CONFIRMACION */
+
 .form-card .mensaje {
     text-align: center;
     color: green;

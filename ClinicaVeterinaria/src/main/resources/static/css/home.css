@@ -1,18 +1,16 @@
-/* RESET BÁSICO */
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-/* ESTILOS GENERALES */
 body {
     font-family: Arial, Helvetica, sans-serif;
     background-color: #f5f7f8;
     color: #333;
 }
 
-/* ===== NAVBAR ===== */
 .navbar {
     padding: 15px 20px;
 }
@@ -21,7 +19,8 @@ body {
     opacity: 0.8;
 }
 
-/* ===== HERO (IMAGEN GRANDE) ===== */
+/* FOTO CENTRAL */
+
 .hero {
     height: calc(80vh - 70px);
     margin-top: 70px;
@@ -31,7 +30,6 @@ body {
     position: relative;
 }
 
-/* Capa oscura encima de la imagen */
 .hero::before {
     content: "";
     position: absolute;
@@ -39,7 +37,6 @@ body {
     background-color: rgba(0, 0, 0, 0.5);
 }
 
-/* Texto encima de la imagen */
 .hero-content {
     position: relative;
     height: 100%;
@@ -62,7 +59,8 @@ body {
     max-width: 700px;
 }
 
-/* ===== SECCIONES ===== */
+/* SECIONES PRINCIPALES */
+
 .section {
     padding: 80px 20px;
 }
@@ -76,12 +74,14 @@ body {
 }
 
 /* CONTENEDOR */
+
 .container {
     max-width: 1100px;
     margin: auto;
 }
 
 /* TÍTULOS */
+
 .section h2 {
     font-size: 36px;
     margin-bottom: 30px;
@@ -89,13 +89,15 @@ body {
 }
 
 /* TEXTO */
+
 .section p {
     font-size: 18px;
     line-height: 1.6;
     text-align: center;
 }
 
-/* ===== TARJETAS ===== */
+/* TARJETAS PRINCIPALES */
+
 .cards {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));

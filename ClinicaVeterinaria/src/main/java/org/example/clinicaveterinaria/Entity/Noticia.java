@@ -3,12 +3,14 @@ package org.example.clinicaveterinaria.Entity;
 import jakarta.persistence.*;
 import java.time.LocalDate;
 
-@Entity // Indica que esta clase es una tabla en la base de datos
+@Entity
 public class Noticia {
+
+    // ESTRUCTURA DE LA CLASE NOTICIA, QUE CORRESPONDE A UNA TABLA EN LA BD
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id; // Clave primaria
+    private Long id;
 
     private String titulo;
 
@@ -17,10 +19,12 @@ public class Noticia {
 
     private LocalDate fechaPublicacion;
 
-    // Constructor vacío obligatorio para JPA
-    public Noticia() {}
+    private String imagen1;
+    private String imagen2;
+    private String imagen3;
+    private String imagen4;
 
-    // Getters y setters (necesarios para JPA)
+    public Noticia() {}
 
     public Long getId() {
         return id;
@@ -48,5 +52,41 @@ public class Noticia {
 
     public void setFechaPublicacion(LocalDate fechaPublicacion) {
         this.fechaPublicacion = fechaPublicacion;
+    }
+
+    public String getImagen1() {
+        return imagen1;
+    }
+
+    public String getImagen2() {
+        return imagen2;
+    }
+
+    public String getImagen3() {
+        return imagen3;
+    }
+
+    public String getImagen4() {
+        return imagen4;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public void setImagen1(String imagen1) {
+        this.imagen1 = imagen1;
+    }
+
+    public void setImagen2(String imagen2) {
+        this.imagen2 = imagen2;
+    }
+
+    public void setImagen3(String imagen3) {
+        this.imagen3 = imagen3;
+    }
+
+    public void setImagen4(String imagen4) {
+        this.imagen4 = imagen4;
     }
 }

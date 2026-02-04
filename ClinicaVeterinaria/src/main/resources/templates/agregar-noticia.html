@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Nueva noticia</title>
+    <link rel="stylesheet" th:href="@{/css/comun.css}">
+</head>
+<body>
+
+<div th:replace="fragments/header :: header"></div>
+
+<main class="container">
+
+    <h1>📰 Nueva noticia</h1>
+
+    <form th:action="@{/noticias/guardar}"
+          th:object="${noticia}"
+          method="post"
+          enctype="multipart/form-data"
+          class="card">
+
+
+        <label>Título</label>
+        <input type="text" th:field="*{titulo}" required>
+
+        <label>Descripción</label>
+        <textarea th:field="*{contenido}" rows="6" required></textarea>
+
+        <label>Imagen 1</label>
+        <input type="file" name="imagen1">
+
+        <label>Imagen 2</label>
+        <input type="file" name="imagen2">
+
+        <label>Imagen 3</label>
+        <input type="file" name="imagen3">
+
+        <label>Imagen 4</label>
+        <input type="file" name="imagen4">
+
+
+        <button type="submit" class="btn-detalle">
+            Guardar noticia
+        </button>
+
+    </form>
+
+</main>
+
+<div th:replace="fragments/footer :: footer"></div>
+
+</body>
+</html>

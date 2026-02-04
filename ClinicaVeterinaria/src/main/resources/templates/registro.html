@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Registro</title>
+    <link rel="stylesheet" th:href="@{/css/comun.css}">
+    <link rel="stylesheet" th:href="@{/css/citas.css}">
+</head>
+
+<body>
+
+<div th:replace="fragments/header :: header"></div>
+
+<section class="hero">
+    <div class="hero-content">
+        <h1>Crear Cuenta</h1>
+        <p>Regístrate para poder reservar citas y realizar compras</p>
+    </div>
+</section>
+
+<section class="section white">
+    <div class="container">
+        <div class="form-card">
+
+            <h2>Registro de Usuario</h2>
+
+            <p th:if="${error}" th:text="${error}" style="color: red; text-align: center; font-weight: bold;"></p>
+
+            <form th:action="@{/registro}" th:object="${usuario}" method="post">
+
+                <label>Nombre de usuario:</label>
+                <input type="text" th:field="*{nombreUsuario}" required autofocus/>
+                <p th:if="${#fields.hasErrors('nombreUsuario')}"
+                   th:errors="*{nombreUsuario}"
+                   style="color: red; font-size: 14px;">
+                </p>
+
+                <label>Email:</label>
+                <input type="email" th:field="*{email}" required/>
+                <p th:if="${#fields.hasErrors('email')}"
+                   th:errors="*{email}"
+                   style="color: red; font-size: 14px;">
+                </p>
+
+                <label>Contraseña:</label>
+                <input type="password" th:field="*{contraseña}" required/>
+                <p th:if="${#fields.hasErrors('contraseña')}"
+                   th:errors="*{contraseña}"
+                   style="color: red; font-size: 14px;">
+                </p>
+
+                <label>Confirmar contraseña:</label>
+                <input type="password" th:field="*{confirmarContraseña}" required/>
+                <p th:if="${#fields.hasErrors('confirmarContraseña')}"
+                   th:errors="*{confirmarContraseña}"
+                   style="color: red; font-size: 14px;">
+                </p>
+
+                <button type="submit">Registrarse</button>
+
+            </form>
+
+            <p style="text-align: center; margin-top: 20px;">
+                ¿Ya tienes cuenta?
+                <a th:href="@{/login}" style="color: #2e8b57; font-weight: bold;">Inicia sesión aquí</a>
+            </p>
+
+        </div>
+    </div>
+</section>
+
+<div th:replace="fragments/footer :: footer"></div>
+
+</body>
+
+</html>

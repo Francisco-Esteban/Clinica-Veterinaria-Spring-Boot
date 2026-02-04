@@ -12,25 +12,26 @@ public class CitaController {
 
     private final CitaRepositorio citaRepositorio;
 
-    // Inyección de dependencia
     public CitaController(CitaRepositorio citaRepositorio) {
         this.citaRepositorio = citaRepositorio;
     }
 
-    // Mostrar formulario
+    // FORMULARIO DE CITAS
+
     @GetMapping("/cita")
     public String mostrarFormulario(Model model) {
-        model.addAttribute("cita", new Cita()); // Objeto vacío para el formulario
-        return "cita"; // templates/cita.html
+        model.addAttribute("cita", new Cita());
+        return "cita";
     }
+
+    // GUARDAR LA CITA
 
     @PostMapping("/cita")
     public String guardarCita(@ModelAttribute("cita") Cita cita, Model model) {
+
         citaRepositorio.save(cita);
-
         model.addAttribute("cita", new Cita());
-
-        model.addAttribute("mensaje", "¡Tu cita ha sido reservada correctamente!");
+        model.addAttribute("mensaje", "¡Tu cita ha sido reservada!");
 
         return "cita";
     }

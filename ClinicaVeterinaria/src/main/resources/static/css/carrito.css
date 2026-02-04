@@ -1,11 +1,11 @@
-/* ===== CONTENEDOR GENERAL ===== */
+/* CONTENEDOR GENERAL */
 .carrito-container {
     max-width: 900px;
     margin: 120px auto 60px;
     padding: 20px;
 }
 
-/* TÍTULO */
+/* TITULO */
 .carrito-container h1 {
     text-align: center;
     margin-bottom: 40px;
@@ -17,12 +17,12 @@
     font-size: 18px;
 }
 
-/* ===== TARJETA PRODUCTO ===== */
+/* TARJETA DE CADA PRODUCTO QUE SE AGREGA*/
 .carrito-item {
     background-color: white;
     padding: 20px;
     border-radius: 12px;
-    box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
     margin-bottom: 20px;
 
     display: flex;
@@ -30,7 +30,7 @@
     align-items: center;
 }
 
-/* BOTÓN ELIMINAR */
+/* ELIMINAR UN PRODUCTO DE LOS AÑADIDOS */
 .btn-eliminar {
     background-color: #c0392b;
     color: white;
@@ -44,14 +44,14 @@
     background-color: #a93226;
 }
 
-/* TOTAL */
+/* TOTAL, SUMA DE TODOS LOS PRECIOS */
 .total {
     text-align: right;
     font-size: 22px;
     margin-top: 30px;
 }
 
-/* BOTONES */
+/* ESTILOS PARA LOS BOTONES */
 .acciones {
     display: flex;
     justify-content: space-between;

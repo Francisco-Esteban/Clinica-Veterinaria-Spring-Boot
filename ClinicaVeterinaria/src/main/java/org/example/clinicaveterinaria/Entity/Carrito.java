@@ -2,6 +2,7 @@ package org.example.clinicaveterinaria.Entity;
 
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.annotation.SessionScope;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -12,31 +13,27 @@ public class Carrito {
 
     private Map<Producto, Integer> productos = new HashMap<>();
 
-    // Añadir producto
+    // OPERACIONES CON EL CARRITO
+
     public void agregarProducto(Producto producto) {
 
-        // Si ya existe, sumamos 1
         productos.put(producto, productos.getOrDefault(producto, 0) + 1);
     }
 
-    // Eliminar producto completo
     public void eliminarProducto(Producto producto) {
         productos.remove(producto);
     }
 
-    // Obtener productos
     public Map<Producto, Integer> getProductos() {
         return productos;
     }
 
-    // Calcular total
     public double getTotal() {
         return productos.entrySet().stream()
                 .mapToDouble(e -> e.getKey().getPrecio() * e.getValue())
                 .sum();
     }
 
-    // Vaciar carrito (lo usaremos luego)
     public void vaciar() {
         productos.clear();
     }

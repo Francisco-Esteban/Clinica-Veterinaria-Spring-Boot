@@ -7,9 +7,11 @@ import java.time.LocalTime;
 @Entity
 public class Cita {
 
+    // ESTRUCTURA DE LA CLASE CITA, QUE CORRESPONDE A UNA TABLA EN LA BD
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id; // Clave primaria automática
+    private Long id;
 
     private String nombre;
     private String email;
@@ -18,10 +20,8 @@ public class Cita {
     private LocalDate fecha;
     private LocalTime hora;
 
-    // Constructor vacío (obligatorio para JPA)
     public Cita() {}
 
-    // Getters y setters
     public Long getId() { return id; }
 
     public String getNombre() { return nombre; }

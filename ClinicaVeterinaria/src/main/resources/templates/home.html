@@ -5,17 +5,14 @@
     <meta charset="UTF-8">
     <title>Clínica Veterinaria</title>
 
-    <!-- Enlace al CSS -->
     <link rel="stylesheet" th:href="@{/css/comun.css}">
     <link rel="stylesheet" th:href="@{/css/home.css}">
 </head>
 
 <body>
 
-<!-- Incluir header -->
 <div th:replace="fragments/header :: header"></div>
 
-<!-- HERO: Imagen grande con texto -->
 <section class="hero">
     <div class="hero-content">
         <h1>Clínica Veterinaria Fran</h1>
@@ -26,7 +23,6 @@
     </div>
 </section>
 
-<!-- QUIÉNES SOMOS -->
 <section class="section white">
     <div class="container">
         <h2>Quiénes somos</h2>
@@ -38,7 +34,6 @@
     </div>
 </section>
 
-<!-- SERVICIOS -->
 <section class="section gray">
     <div class="container">
         <h2>Nuestros servicios</h2>
@@ -67,7 +62,6 @@
     </div>
 </section>
 
-<!-- Footer -->
 <div th:replace="fragments/footer :: footer"></div>
 
 </body>

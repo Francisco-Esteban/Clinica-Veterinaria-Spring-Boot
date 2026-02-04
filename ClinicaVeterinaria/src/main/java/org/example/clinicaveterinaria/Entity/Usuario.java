@@ -6,6 +6,8 @@ import jakarta.persistence.*;
 @Table(name = "usuarios")
 public class Usuario {
 
+    // ESTRUCTURA DE LA CLASE USUARIO, QUE CORRESPONDE A UNA TABLA EN LA BD
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -36,7 +38,6 @@ public class Usuario {
         this.activo = true;
     }
 
-    // Getters y Setters
     public Long getId() {
         return id;
     }

@@ -17,15 +17,16 @@ public class UsuarioServicio {
         this.passwordEncoder = passwordEncoder;
     }
 
-    // Registrar un nuevo usuario (cliente)
+    // REGISTRAR USUARIO CON COMPROBACIONES DE NOMBRE Y EMAIL
+
     public Usuario registrarUsuario(UsuarioRegistro registroDTO) {
 
-        // Crear el usuario con rol de CLIENTE por defecto
+
         Usuario nuevoUsuario = new Usuario();
         nuevoUsuario.setNombreUsuario(registroDTO.getNombreUsuario());
         nuevoUsuario.setEmail(registroDTO.getEmail());
 
-        // Encriptar la contraseña antes de guardarla
+
         nuevoUsuario.setContraseña(passwordEncoder.encode(registroDTO.getContraseña()));
 
         nuevoUsuario.setRol("ROLE_CLIENTE");
@@ -34,17 +35,14 @@ public class UsuarioServicio {
         return usuarioRepositorio.save(nuevoUsuario);
     }
 
-    // Verificar si el email ya existe
     public boolean existeEmail(String email) {
         return usuarioRepositorio.existsByEmail(email);
     }
 
-    // Verificar si el nombre de usuario ya existe
     public boolean existeNombreUsuario(String nombreUsuario) {
         return usuarioRepositorio.existsByNombreUsuario(nombreUsuario);
     }
 
-    // Guardar un usuario (útil para crear el admin inicial)
     public Usuario guardarUsuario(Usuario usuario) {
         return usuarioRepositorio.save(usuario);
     }

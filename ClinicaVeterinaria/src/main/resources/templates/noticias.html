@@ -1,47 +1,54 @@
 <!DOCTYPE html>
-<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<html lang="es"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
 
 <head>
     <meta charset="UTF-8">
     <title>Noticias</title>
-
-    <!-- CSS específico de noticias -->
+    
     <link rel="stylesheet" th:href="@{/css/comun.css}">
     <link rel="stylesheet" th:href="@{/css/noticias.css}">
 </head>
 
 <body>
 
-<!-- Incluir header -->
 <div th:replace="fragments/header :: header"></div>
 
-<!-- HERO NOTICIAS -->
 <section class="hero">
     <div class="hero-content">
         <h1>Noticias y novedades</h1>
     </div>
 </section>
 
-<!-- LISTADO DE NOTICIAS -->
+<div sec:authorize="hasAuthority('ADMIN')">
+    <a th:href="@{/noticias/nueva}" class="btn-detalle">
+        ➕ Nueva noticia
+    </a>
+</div>
+
 <section class="section white">
     <div class="container">
 
         <div class="cards">
-            <!-- Recorremos la lista de noticias -->
-            <div class="card" th:each="noticia : ${noticias}">
-                <h3 th:text="${noticia.titulo}"></h3>
 
-                <p th:text="${noticia.contenido}"></p>
+            <div sec:authorize="hasAuthority('ADMIN')">
+                <a th:href="@{/noticias/editar/{id}(id=${noticia.id})}">
+                    ✏️ Editar
+                </a>
 
-                <!-- Fecha -->
-                <div class="fecha" th:text="${noticia.fechaPublicacion}"></div>
+                <a th:href="@{/noticias/borrar/{id}(id=${noticia.id})}"
+                   onclick="return confirm('¿Seguro que quieres borrar esta noticia?')">
+                    🗑️ Borrar
+                </a>
             </div>
+
         </div>
 
     </div>
 </section>
 
-<!-- Footer -->
 <div th:replace="fragments/footer :: footer"></div>
 
 </body>

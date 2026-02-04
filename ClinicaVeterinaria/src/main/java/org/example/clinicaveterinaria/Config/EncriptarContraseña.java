@@ -8,6 +8,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @Configuration
 public class EncriptarContraseña {
 
+    // ENCRIPTAR LA CONTRASEÑA, LA SUSTITUYE POR UNA CADENA DE CARACTERES
+
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();

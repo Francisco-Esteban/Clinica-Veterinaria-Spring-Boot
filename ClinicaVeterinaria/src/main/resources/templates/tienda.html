@@ -1,91 +1,106 @@
 <!DOCTYPE html>
-<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<html lang="es" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 <head>
     <meta charset="UTF-8">
     <title>Tienda Online</title>
 
-    <!-- CSS común -->
     <link rel="stylesheet" th:href="@{/css/comun.css}">
-    <!-- CSS específico de la tienda -->
     <link rel="stylesheet" th:href="@{/css/tienda.css}">
+
 </head>
 
 <body>
 
-    <!-- Header común -->
-    <div th:replace="fragments/header :: header"></div>
+<div th:replace="fragments/header :: header"></div>
 
-    <!-- TÍTULO -->
-    <section class="section white">
-        <div class="container">
-            <h2>Nuestra tienda</h2>
-            <p>
-                Productos de calidad para el cuidado y bienestar de tu mascota.
-            </p>
+<section class="section white">
+    <div class="container">
+        <h2>Nuestra tienda</h2>
+        <p>
+            Productos de calidad para el cuidado y bienestar de tu mascota.
+        </p>
+
+        <div sec:authorize="hasRole('ADMIN')" style="text-align: center; margin-top: 20px;">
+            <a th:href="@{/tienda/nuevo}" class="btn-detalle"
+               style="background-color: #3498db; padding: 12px 24px; font-size: 16px;">
+                ➕ Añadir Producto
+            </a>
         </div>
-    </section>
 
-    <!-- LISTADO DE PRODUCTOS -->
-
-    <div class="ver-carrito">
-        <a th:href="@{/carrito}" class="btn-carrito">
-            🛒 Ver carrito
-        </a>
     </div>
+</section>
 
-    <section class="section gray">
-        <div class="container">
+<div class="ver-carrito" sec:authorize="isAuthenticated()">
+    <a th:href="@{/carrito}" class="btn-carrito">
+        🛒 Ver carrito
+    </a>
+</div>
 
-            <div class="cards">
+<section class="section gray">
+    <div class="container">
 
-                <div class="card" th:each="producto : ${productos}">
+        <div class="cards">
 
-                    <img th:src="@{/img/productos/{ruta}(ruta=${producto.imagen})}" alt="Imagen del producto"
-                        class="producto-img">
+            <div class="card" th:each="producto : ${productos}">
 
-                    <h3 th:text="${producto.nombre}">Nombre producto</h3>
+                <img th:src="@{/img/productos/{ruta}(ruta=${producto.imagen})}" alt="Imagen del producto"
+                     class="producto-img">
 
-                    <p th:text="${producto.descripcion}">Descripción</p>
+                <h3 th:text="${producto.nombre}">Nombre producto</h3>
 
-                    <p>
-                        <strong th:text="${producto.precio} + ' €'">0 €</strong>
-                    </p>
+                <p th:text="${producto.descripcion}">Descripción</p>
 
-                    <p>
-                        Stock:
-                        <span th:text="${producto.stock}">0</span>
-                    </p>
+                <p>
+                    <strong th:text="${producto.precio} + ' €'">0 €</strong>
+                </p>
 
-                    <a th:href="@{/tienda/{id}(id=${producto.id})}" class="btn-detalle">
-                        Ver producto
+                <p>
+                    Stock:
+                    <span th:text="${producto.stock}">0</span>
+                </p>
+
+                <a th:href="@{/tienda/{id}(id=${producto.id})}" class="btn-detalle">
+                    Ver producto
+                </a>
+
+                <div sec:authorize="hasAuthority('ADMIN')">
+                    <a th:href="@{/tienda/editar/{id}(id=${producto.id})}"
+                       class="btn-detalle"
+                       style="background-color: #f39c12;">
+                        ✏️ Editar
                     </a>
 
                     <a th:href="@{/tienda/borrar/{id}(id=${producto.id})}" class="btn-detalle"
-                        onclick="return confirm('¿Seguro que deseas borrar este producto?');">
-                        Borrar
+                       style="background-color: #e74c3c;"
+                       onclick="return confirm('¿Seguro que deseas borrar este producto?');">
+                        🗑️ Borrar
                     </a>
+                </div>
 
-                    <a th:href="@{/tienda/editar/{id}(id=${producto.id})}"
-                       class="btn-detalle">
-                        Editar
-                    </a>
+                <form th:action="@{/carrito/agregar/{id}(id=${producto.id})}" method="post"
+                      sec:authorize="isAuthenticated()">
+                    <button type="submit" class="btn-detalle">
+                        🛒 Añadir al carrito
+                    </button>
+                </form>
 
-                    <form th:action="@{/carrito/agregar/{id}(id=${producto.id})}" method="post">
-                        <button type="submit" class="btn-detalle">
-                            Añadir al carrito
-                        </button>
-                    </form>
-
+                <div sec:authorize="!isAuthenticated()">
+                    <p style="text-align: center; margin-top: 10px; font-size: 14px; color: #777;">
+                        <a th:href="@{/login}" style="color: #2e8b57; font-weight: bold;">Inicia sesión</a>
+                        para añadir al carrito
+                    </p>
                 </div>
 
             </div>
 
         </div>
-    </section>
 
-    <!-- Footer común -->
-    <div th:replace="fragments/footer :: footer"></div>
+    </div>
+</section>
+
+<div th:replace="fragments/footer :: footer"></div>
 
 </body>
 
