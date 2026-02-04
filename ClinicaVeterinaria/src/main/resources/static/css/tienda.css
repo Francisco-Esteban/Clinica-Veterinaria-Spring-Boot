@@ -1,0 +1,81 @@
+/* ===== TÍTULO DE LA TIENDA ===== */
+.section h2 {
+    font-size: 36px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.section p {
+    font-size: 18px;
+    text-align: center;
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+/* ===== TARJETAS DE PRODUCTOS ===== */
+.cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+    margin-top: 50px;
+}
+
+.card {
+    background-color: white;
+    padding: 30px;
+    border-radius: 12px;
+    text-align: center;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Efecto hover suave */
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* Nombre del producto */
+.card h3 {
+    font-size: 22px;
+    margin-bottom: 15px;
+}
+
+/* Precio */
+.card strong {
+    display: block;
+    margin-top: 15px;
+    font-size: 20px;
+    color: #2e8b57; /* Verde corporativo */
+}
+
+/* Stock */
+.card span {
+    font-weight: bold;
+}
+
+/* Imagen del producto */
+.producto-img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover; /* evita deformar la imagen */
+    border-radius: 8px;
+    margin-bottom: 15px;
+}
+
+/* Botón detalle */
+.btn-detalle {
+    display: inline-block;
+    margin-top: 15px;
+    padding: 10px 20px;
+    background-color: #2e8b57;
+    color: white;
+    text-decoration: none;
+    border-radius: 6px;
+    font-weight: bold;
+}
+
+.btn-detalle:hover {
+    background-color: #256f46;
+}

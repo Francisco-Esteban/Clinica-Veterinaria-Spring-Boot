@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Pedir Cita</title>
+    <link rel="stylesheet" th:href="@{/css/comun.css}">
+    <link rel="stylesheet" th:href="@{/css/citas.css}">
+</head>
+
+<body>
+
+<!-- Incluir header -->
+<div th:replace="fragments/header :: header"></div>
+
+<!-- HERO -->
+<section class="hero">
+    <div class="hero-content">
+        <h1>Reserva tu cita</h1>
+        <p>Rellena el formulario y nos pondremos en contacto contigo.</p>
+    </div>
+</section>
+
+<!-- FORMULARIO -->
+<section class="section white">
+    <div class="container">
+        <div class="form-card">
+
+            <h2>Reserva tu cita</h2>
+
+            <p th:if="${mensaje}" th:text="${mensaje}" class="mensaje"></p>
+
+            <form th:action="@{/cita}" th:object="${cita}" method="post">
+
+                <label>Nombre:</label>
+                <input type="text" th:field="*{nombre}" required/>
+
+                <label>Email:</label>
+                <input type="email" th:field="*{email}" required/>
+
+                <label>Teléfono:</label>
+                <input type="text" th:field="*{telefono}" required/>
+
+                <label>Tipo de mascota:</label>
+                <input type="text" th:field="*{tipoMascota}" required/>
+
+                <label>Fecha:</label>
+                <input type="date" th:field="*{fecha}" required/>
+
+                <label>Hora:</label>
+                <input type="time" th:field="*{hora}" required/>
+
+                <button type="submit">Reservar cita</button>
+
+            </form>
+
+
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<div th:replace="fragments/footer :: footer"></div>
+
+</body>
+
+</html>

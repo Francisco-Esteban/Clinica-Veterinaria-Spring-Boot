@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${producto.nombre}">Detalle producto</title>
+
+    <link rel="stylesheet" th:href="@{/css/comun.css}">
+    <link rel="stylesheet" th:href="@{/css/tienda.css}">
+</head>
+
+<body>
+
+<!-- Header común -->
+<div th:replace="fragments/header :: header"></div>
+
+<section class="section white">
+    <div class="container">
+
+        <div class="card">
+
+            <!-- Imagen -->
+            <img th:src="@{/img/productos/{ruta}(ruta=${producto.imagen})}"
+                 alt="Imagen del producto"
+                 class="producto-img">
+
+            <h2 th:text="${producto.nombre}">Nombre</h2>
+
+            <p th:text="${producto.descripcion}">Descripción</p>
+
+            <p>
+                <strong th:text="${producto.precio} + ' €'">0 €</strong>
+            </p>
+
+            <p>
+                Stock disponible:
+                <span th:text="${producto.stock}">0</span>
+            </p>
+
+            <a th:href="@{/tienda}" class="btn-detalle">
+                Volver a la tienda
+            </a>
+
+        </div>
+
+    </div>
+</section>
+
+<!-- Footer común -->
+<div th:replace="fragments/footer :: footer"></div>
+
+</body>
+
+</html>

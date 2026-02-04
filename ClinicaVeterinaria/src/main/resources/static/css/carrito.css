@@ -1,0 +1,74 @@
+/* ===== CONTENEDOR GENERAL ===== */
+.carrito-container {
+    max-width: 900px;
+    margin: 120px auto 60px;
+    padding: 20px;
+}
+
+/* TÍTULO */
+.carrito-container h1 {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+/* MENSAJE CARRITO VACÍO */
+.carrito-vacio {
+    text-align: center;
+    font-size: 18px;
+}
+
+/* ===== TARJETA PRODUCTO ===== */
+.carrito-item {
+    background-color: white;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+    margin-bottom: 20px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* BOTÓN ELIMINAR */
+.btn-eliminar {
+    background-color: #c0392b;
+    color: white;
+    border: none;
+    padding: 8px 14px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.btn-eliminar:hover {
+    background-color: #a93226;
+}
+
+/* TOTAL */
+.total {
+    text-align: right;
+    font-size: 22px;
+    margin-top: 30px;
+}
+
+/* BOTONES */
+.acciones {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 40px;
+}
+
+.btn-volver,
+.btn-carrito {
+    background-color: #2e8b57;
+    color: white;
+    padding: 12px 20px;
+    border-radius: 10px;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.btn-volver:hover,
+.btn-carrito:hover {
+    background-color: #256f46;
+}

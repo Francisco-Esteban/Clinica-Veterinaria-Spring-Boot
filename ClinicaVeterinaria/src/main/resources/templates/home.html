@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Clínica Veterinaria</title>
+
+    <!-- Enlace al CSS -->
+    <link rel="stylesheet" th:href="@{/css/comun.css}">
+    <link rel="stylesheet" th:href="@{/css/home.css}">
+</head>
+
+<body>
+
+<!-- Incluir header -->
+<div th:replace="fragments/header :: header"></div>
+
+<!-- HERO: Imagen grande con texto -->
+<section class="hero">
+    <div class="hero-content">
+        <h1>Clínica Veterinaria Fran</h1>
+        <p>
+            Cuidamos de la salud y bienestar de tu mascota con un trato
+            cercano, profesional y de confianza.
+        </p>
+    </div>
+</section>
+
+<!-- QUIÉNES SOMOS -->
+<section class="section white">
+    <div class="container">
+        <h2>Quiénes somos</h2>
+        <p>
+            Somos una clínica veterinaria especializada en el cuidado integral
+            de mascotas, ofreciendo servicios médicos, preventivos y
+            personalizados.
+        </p>
+    </div>
+</section>
+
+<!-- SERVICIOS -->
+<section class="section gray">
+    <div class="container">
+        <h2>Nuestros servicios</h2>
+
+        <div class="cards">
+            <div class="card">
+                <h3>🐶 Atención veterinaria</h3>
+                <p>Consultas, vacunación y tratamientos especializados.</p>
+            </div>
+
+            <div class="card">
+                <h3>🛒 Tienda online</h3>
+                <p>Productos de calidad para el cuidado de tu mascota.</p>
+            </div>
+
+            <div class="card">
+                <h3>📅 Citas online</h3>
+                <p>Reserva tu cita de forma rápida y sencilla.</p>
+            </div>
+
+            <div class="card">
+                <h3>📰 Noticias</h3>
+                <p>Información, avisos y novedades de la clínica.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<div th:replace="fragments/footer :: footer"></div>
+
+</body>
+
+</html>

@@ -1,0 +1,44 @@
+/* ===== HEADER ===== */
+header {
+    position: fixed;
+    /* Fijo arriba */
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    background-color: rgba(46, 139, 87, 0.9);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.container-nav {
+    max-width: 1100px;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+}
+
+.logo h2 {
+    color: white;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 25px;
+}
+
+.nav-links a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+/* ===== FOOTER (EL QUE NOS INTERESA) ===== */
+footer {
+    background-color: #2e8b57;
+    color: white;
+    text-align: center;
+    padding: 30px;
+}

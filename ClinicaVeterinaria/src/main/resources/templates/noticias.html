@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Noticias</title>
+
+    <!-- CSS específico de noticias -->
+    <link rel="stylesheet" th:href="@{/css/comun.css}">
+    <link rel="stylesheet" th:href="@{/css/noticias.css}">
+</head>
+
+<body>
+
+<!-- Incluir header -->
+<div th:replace="fragments/header :: header"></div>
+
+<!-- HERO NOTICIAS -->
+<section class="hero">
+    <div class="hero-content">
+        <h1>Noticias y novedades</h1>
+    </div>
+</section>
+
+<!-- LISTADO DE NOTICIAS -->
+<section class="section white">
+    <div class="container">
+
+        <div class="cards">
+            <!-- Recorremos la lista de noticias -->
+            <div class="card" th:each="noticia : ${noticias}">
+                <h3 th:text="${noticia.titulo}"></h3>
+
+                <p th:text="${noticia.contenido}"></p>
+
+                <!-- Fecha -->
+                <div class="fecha" th:text="${noticia.fechaPublicacion}"></div>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<!-- Footer -->
+<div th:replace="fragments/footer :: footer"></div>
+
+</body>
+
+</html>
