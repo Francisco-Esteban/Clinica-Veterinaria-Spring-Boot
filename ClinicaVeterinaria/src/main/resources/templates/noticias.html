@@ -25,10 +25,10 @@
     <div class="container">
 
         <div sec:authorize="hasRole('ADMIN')" style="text-align: center; margin-bottom: 30px;">
-            <a th:href="@{/nueva}" class="btn-detalle"
-               style="background-color: #3498db; padding: 12px 24px; font-size: 16px;">
+            <a th:href="@{/nueva}" class="btn-crear">
                 ➕ Nueva noticia
             </a>
+
         </div>
 
         <div class="cards">
@@ -42,17 +42,16 @@
 
                 <div sec:authorize="hasRole('ADMIN')" style="margin-top: 15px;">
                     <a th:href="@{/editar/{id}(id=${noticia.id})}"
-                       class="btn-detalle"
-                       style="background-color: #f39c12; margin-right: 10px;">
+                       class="btn-editar">
                         ✏️ Editar
                     </a>
 
                     <a th:href="@{/borrar/{id}(id=${noticia.id})}"
-                       class="btn-detalle"
-                       style="background-color: #e74c3c;"
+                       class="btn-borrar"
                        onclick="return confirm('¿Seguro que quieres borrar esta noticia?');">
                         🗑️ Borrar
                     </a>
+
                 </div>
             </div>
         </div>

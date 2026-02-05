@@ -23,9 +23,9 @@
         </p>
 
         <div sec:authorize="hasRole('ADMIN')" style="text-align: center; margin-top: 20px;">
-            <a th:href="@{/tienda/nuevo}" class="btn-detalle"
-               style="background-color: #3498db; padding: 12px 24px; font-size: 16px;">
+            <a th:href="@{/tienda/nuevo}" class="btn-crear">
                 ➕ Añadir Producto
+            </a>
             </a>
         </div>
 
@@ -65,18 +65,18 @@
                     Ver producto
                 </a>
 
-                <div sec:authorize="hasAuthority('ADMIN')">
+                <div sec:authorize="hasRole('ADMIN')">
                     <a th:href="@{/tienda/editar/{id}(id=${producto.id})}"
-                       class="btn-detalle"
-                       style="background-color: #f39c12;">
+                       class="btn-editar">
                         ✏️ Editar
                     </a>
 
-                    <a th:href="@{/tienda/borrar/{id}(id=${producto.id})}" class="btn-detalle"
-                       style="background-color: #e74c3c;"
+                    <a th:href="@{/tienda/borrar/{id}(id=${producto.id})}"
+                       class="btn-borrar"
                        onclick="return confirm('¿Seguro que deseas borrar este producto?');">
                         🗑️ Borrar
                     </a>
+
                 </div>
 
                 <form th:action="@{/carrito/agregar/{id}(id=${producto.id})}" method="post"

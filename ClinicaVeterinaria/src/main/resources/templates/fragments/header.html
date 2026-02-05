@@ -14,6 +14,8 @@
                 <li><a th:href="@{/cita}">Pedir Cita</a></li>
                 <li><a th:href="@{/noticias}">Noticias</a></li>
 
+                <li style="width: 2px; height: 20px; background-color: white; margin: 0 10px;"></li>
+
                 <!-- LO QUE SE MUESTRA CUANDO EL USUARIO NO SE HA REGISTRADO -->
 
                 <li sec:authorize="!isAuthenticated()">
@@ -31,7 +33,7 @@
           </span>
                 </li>
                 <li sec:authorize="isAuthenticated()">
-                    <a th:href="@{/carrito}">🛒 Carrito</a>
+                    <a th:href="@{/carrito}">🛒 Mi Carrito</a>
                 </li>
                 <li sec:authorize="isAuthenticated()">
                     <form th:action="@{/logout}" method="post" style="display: inline;">
