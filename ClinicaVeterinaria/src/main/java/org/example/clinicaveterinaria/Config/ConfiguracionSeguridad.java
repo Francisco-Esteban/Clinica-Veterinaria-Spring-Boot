@@ -30,47 +30,31 @@ public class ConfiguracionSeguridad {
         http
                 .authorizeHttpRequests(auth -> auth
 
-                        .requestMatchers("/carrito/**", "/cita/**")
-                        .hasAnyAuthority("ADMIN", "ROLE_CLIENTE")
-
-                        // RUTAS A LAS QUE PUEDEN ACCEDER TODOS
 
                         .requestMatchers("/", "/home", "/noticias", "/tienda", "/tienda/{id}").permitAll()
                         .requestMatchers("/registro", "/login").permitAll()
                         .requestMatchers("/css/**", "/img/**", "/js/**").permitAll()
 
-                        // RUTAS A LAS QUE PUEDEN ACCEDER TODOS AQUELLOS QUE SE REGISTREN
 
                         .requestMatchers("/cita", "/cita/**").hasAnyRole("CLIENTE", "ADMIN")
                         .requestMatchers("/carrito/**").hasAnyRole("CLIENTE", "ADMIN")
 
-                        // RUTAS A LAS QUE PUEDEN LOS ADMINISTRADORES
 
                         .requestMatchers("/tienda/nuevo", "/tienda/guardar").hasRole("ADMIN")
                         .requestMatchers("/tienda/editar/**", "/tienda/borrar/**").hasRole("ADMIN")
-                        .requestMatchers("/carrito/**").hasAnyRole("USER", "ADMIN")
-                        .requestMatchers("/cita/**")
-                        .hasAnyAuthority("ADMIN", "ROLE_CLIENTE")
-                        .requestMatchers("/noticias/nueva", "/noticias/guardar", "/noticias/**")
-                        .hasAuthority("ADMIN")
 
 
-                        // CUALQUIER OTRA RUTA REQUIERE REGISTRO
+                        .requestMatchers("/nueva", "/guardar", "/editar/**", "/borrar/**").hasRole("ADMIN")
+
 
                         .anyRequest().authenticated()
                 )
-
-                // LOGIN
-
                 .formLogin(form -> form
                         .loginPage("/login")
                         .defaultSuccessUrl("/", true)
                         .failureUrl("/login?error=true")
                         .permitAll()
                 )
-
-                // LOGOUT
-
                 .logout(logout -> logout
                         .logoutUrl("/logout")
                         .logoutSuccessUrl("/")

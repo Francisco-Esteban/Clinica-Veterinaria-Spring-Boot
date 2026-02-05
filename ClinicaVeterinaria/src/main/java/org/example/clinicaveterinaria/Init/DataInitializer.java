@@ -30,15 +30,16 @@ public class DataInitializer implements CommandLineRunner {
             Usuario admin = new Usuario();
             admin.setNombreUsuario("admin");
             admin.setEmail("admin@admin.com");
-
             admin.setContraseña(passwordEncoder.encode("admin"));
 
-            admin.setRol("ADMIN");
+            admin.setRol("ROLE_ADMIN");
             admin.setActivo(true);
 
             usuarioRepositorio.save(admin);
 
-            System.out.println("Usuario ADMIN creado por defecto");
+            System.out.println("Usuario ADMIN creado por valores por defecto");
+            System.out.println("Nombre: admin");
+            System.out.println("Contraseña: admin");
         } else {
             System.out.println("Usuario ADMIN ya existe");
         }
