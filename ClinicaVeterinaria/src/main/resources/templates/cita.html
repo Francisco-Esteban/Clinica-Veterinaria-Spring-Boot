@@ -25,7 +25,13 @@
 
             <h2>Reserva tu cita</h2>
 
+            <!-- Mensaje cuando la reserva ha sido exitosa -->
+
             <p th:if="${mensaje}" th:text="${mensaje}" class="mensaje"></p>
+
+            <!-- Mensaje cuando la reserva no se ha podido realizar -->
+
+            <p th:if="${error}" th:text="${error}" class="mensaje" style="color: red;"></p>
 
             <form th:action="@{/cita}" th:object="${cita}" method="post">
 

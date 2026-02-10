@@ -1,7 +1,5 @@
 <!DOCTYPE html>
-<html lang="es"
-      xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<html lang="es" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 <head>
     <meta charset="UTF-8">
@@ -40,23 +38,64 @@
 
                 <div class="fecha" th:text="${noticia.fechaPublicacion}"></div>
 
-                <div sec:authorize="hasRole('ADMIN')" style="margin-top: 15px;">
-                    <a th:href="@{/editar/{id}(id=${noticia.id})}"
-                       class="btn-editar">
-                        ✏️ Editar
-                    </a>
+                <!-- SECCION DE ME GUSTA -->
 
-                    <a th:href="@{/borrar/{id}(id=${noticia.id})}"
-                       class="btn-borrar"
-                       onclick="return confirm('¿Seguro que quieres borrar esta noticia?');">
-                        🗑️ Borrar
-                    </a>
+                <div class="megusta-section">
 
+                    <!-- Los usuarios autenticados pueden darle al boton de "me gusta", y quitarlo -->
+
+                    <form sec:authorize="isAuthenticated()" th:action="@{/noticia/{id}/megusta(id=${noticia.id})}"
+                          method="post" style="display: inline;">
+
+                        <button type="submit" class="btn-megusta"
+                                th:classappend="${misLikes.contains(noticia.id)} ? 'liked' : ''">
+                            <span th:if="${misLikes.contains(noticia.id)}">❤️</span>
+                            <span th:unless="${misLikes.contains(noticia.id)}">🤍</span>
+                        </button>
+                    </form>
+
+                    <!-- Pero el contador de likes es publico -->
+
+                    <span class="likes-count" th:text="${likesConteo[noticia.id]} + ' Me gusta'"></span>
+                </div>
+
+                <!-- SECCION COMPARTIR -->
+
+                <div class="compartir">
+                    <span>Compartir:</span>
+
+                    <!-- Correo electronico -->
+
+                    <a th:href="|mailto:?subject=Noticia interesante&body=Lee esta noticia: @{/noticias}|"
+                       target="_blank" title="Compartir por email">✉️</a>
+
+                    <!-- Whatsapp-->
+
+                    <a th:href="|https://wa.me/?text=Lee esta noticia: @{/noticias}|"
+                       target="_blank" title="Compartir por WhatsApp">💬</a>
+
+                    <!-- X -->
+
+                    <a th:href="|https://twitter.com/intent/tweet?text=Noticia interesante&url=@{/noticias}|"
+                       target="_blank" title="Compartir en Twitter">✖️</a>
+
+                    <div sec:authorize="hasRole('ADMIN')" style="margin-top: 15px;">
+                        <a th:href="@{/editar/{id}(id=${noticia.id})}" class="btn-editar">
+                            ✏️ Editar
+                        </a>
+
+                        <a th:href="@{/borrar/{id}(id=${noticia.id})}" class="btn-borrar"
+                           onclick="return confirm('¿Seguro que quieres borrar esta noticia?');">
+                            🗑️ Borrar
+                        </a>
+
+                    </div>
+
+                    </div>
                 </div>
             </div>
-        </div>
 
-    </div>
+        </div>
 </section>
 
 <div th:replace="fragments/footer :: footer"></div>

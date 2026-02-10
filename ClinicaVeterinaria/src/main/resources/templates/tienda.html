@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<html lang="es" xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<html lang="es" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 <head>
     <meta charset="UTF-8">
@@ -13,94 +12,109 @@
 
 <body>
 
-<div th:replace="fragments/header :: header"></div>
+    <div th:replace="fragments/header :: header"></div>
 
-<section class="section white">
-    <div class="container">
-        <h2>Nuestra tienda</h2>
-        <p>
-            Productos de calidad para el cuidado y bienestar de tu mascota.
-        </p>
+    <section class="section white">
+        <div class="container">
+            <h2>Nuestra tienda</h2>
+            <p>
+                Productos de calidad para el cuidado y bienestar de tu mascota.
+            </p>
 
-        <div sec:authorize="hasRole('ADMIN')" style="text-align: center; margin-top: 20px;">
-            <a th:href="@{/tienda/nuevo}" class="btn-crear">
-                ➕ Añadir Producto
-            </a>
-            </a>
-        </div>
-
-    </div>
-</section>
-
-<div class="ver-carrito" sec:authorize="isAuthenticated()">
-    <a th:href="@{/carrito}" class="btn-carrito">
-        🛒 Ver carrito
-    </a>
-</div>
-
-<section class="section gray">
-    <div class="container">
-
-        <div class="cards">
-
-            <div class="card" th:each="producto : ${productos}">
-
-                <img th:src="@{/img/productos/{ruta}(ruta=${producto.imagen})}" alt="Imagen del producto"
-                     class="producto-img">
-
-                <h3 th:text="${producto.nombre}">Nombre producto</h3>
-
-                <p th:text="${producto.descripcion}">Descripción</p>
-
-                <p>
-                    <strong th:text="${producto.precio} + ' €'">0 €</strong>
-                </p>
-
-                <p>
-                    Stock:
-                    <span th:text="${producto.stock}">0</span>
-                </p>
-
-                <a th:href="@{/tienda/{id}(id=${producto.id})}" class="btn-detalle">
-                    Ver producto
+            <div sec:authorize="hasRole('ADMIN')" style="text-align: center; margin-top: 20px;">
+                <a th:href="@{/tienda/nuevo}" class="btn-crear">
+                    ➕ Añadir Producto
                 </a>
+                </a>
+            </div>
 
-                <div sec:authorize="hasRole('ADMIN')">
-                    <a th:href="@{/tienda/editar/{id}(id=${producto.id})}"
-                       class="btn-editar">
-                        ✏️ Editar
-                    </a>
+        </div>
+    </section>
 
-                    <a th:href="@{/tienda/borrar/{id}(id=${producto.id})}"
-                       class="btn-borrar"
-                       onclick="return confirm('¿Seguro que deseas borrar este producto?');">
-                        🗑️ Borrar
-                    </a>
+    <div class="ver-carrito" sec:authorize="isAuthenticated()">
+        <a th:href="@{/carrito}" class="btn-carrito">
+            🛒 Ver carrito
+        </a>
+    </div>
 
-                </div>
+    <section class="section gray">
+        <div class="container">
 
-                <form th:action="@{/carrito/agregar/{id}(id=${producto.id})}" method="post"
-                      sec:authorize="isAuthenticated()">
-                    <button type="submit" class="btn-detalle">
-                        🛒 Añadir al carrito
-                    </button>
-                </form>
+            <!-- FILTRO POR CATEGORIA -->
 
-                <div sec:authorize="!isAuthenticated()">
-                    <p style="text-align: center; margin-top: 10px; font-size: 14px; color: #777;">
-                        <a th:href="@{/login}" style="color: #2e8b57; font-weight: bold;">Inicia sesión</a>
-                        para añadir al carrito
+            <div class="filtro-categorias">
+                <a th:href="@{/tienda}" class="btn-filtro"
+                    th:classappend="${categoriaSeleccionada == null} ? 'activo' : ''">
+                    Todos
+                </a>
+                <a th:href="@{/tienda(categoria='piensos')}" class="btn-filtro"
+                    th:classappend="${categoriaSeleccionada == 'piensos'} ? 'activo' : ''">
+                    Piensos
+                </a>
+                <a th:href="@{/tienda(categoria='collares')}" class="btn-filtro"
+                    th:classappend="${categoriaSeleccionada == 'collares'} ? 'activo' : ''">
+                    Collares
+                </a>
+            </div>
+
+            <div class="cards">
+
+                <div class="card" th:each="producto : ${productos}">
+
+                    <img th:src="@{/img/productos/{ruta}(ruta=${producto.imagen})}" alt="Imagen del producto"
+                        class="producto-img">
+
+                    <h3 th:text="${producto.nombre}">Nombre producto</h3>
+
+                    <p th:text="${producto.descripcion}">Descripción</p>
+
+                    <p>
+                        <strong th:text="${producto.precio} + ' €'">0 €</strong>
                     </p>
+
+                    <p>
+                        Stock:
+                        <span th:text="${producto.stock}">0</span>
+                    </p>
+
+                    <a th:href="@{/tienda/{id}(id=${producto.id})}" class="btn-detalle">
+                        Ver producto
+                    </a>
+
+                    <div sec:authorize="hasRole('ADMIN')">
+                        <a th:href="@{/tienda/editar/{id}(id=${producto.id})}" class="btn-editar">
+                            ✏️ Editar
+                        </a>
+
+                        <a th:href="@{/tienda/borrar/{id}(id=${producto.id})}" class="btn-borrar"
+                            onclick="return confirm('¿Seguro que deseas borrar este producto?');">
+                            🗑️ Borrar
+                        </a>
+
+                    </div>
+
+                    <form th:action="@{/carrito/agregar/{id}(id=${producto.id})}" method="post"
+                        sec:authorize="isAuthenticated()">
+                        <button type="submit" class="btn-detalle">
+                            🛒 Añadir al carrito
+                        </button>
+                    </form>
+
+                    <div sec:authorize="!isAuthenticated()">
+                        <p style="text-align: center; margin-top: 10px; font-size: 14px; color: #777;">
+                            <a th:href="@{/login}" style="color: #2e8b57; font-weight: bold;">Inicia sesión</a>
+                            para añadir al carrito
+                        </p>
+                    </div>
+
                 </div>
 
             </div>
 
         </div>
+    </section>
 
-    </div>
-</section>
-
-<div th:replace="fragments/footer :: footer"></div>
+    <div th:replace="fragments/footer :: footer"></div>
 
 </body>
 

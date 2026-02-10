@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
+import java.util.Objects;
 
 @Entity
 @Table(name = "productos")
@@ -33,15 +34,18 @@ public class Producto {
     @NotBlank(message = "La imagen es obligatoria")
     private String imagen;
 
+    private String categoria;
+
     public Producto() {
     }
 
-    public Producto(String nombre, String descripcion, double precio, int stock, String imagen) {
+    public Producto(String nombre, String descripcion, double precio, int stock, String imagen, String categoria) {
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.precio = precio;
         this.stock = stock;
         this.imagen = imagen;
+        this.categoria = categoria;
     }
 
     public Long getId() {
@@ -90,5 +94,33 @@ public class Producto {
 
     public void setImagen(String imagen) {
         this.imagen = imagen;
+    }
+
+    public String getCategoria() {
+        return categoria;
+    }
+
+    public void setCategoria(String categoria) {
+        this.categoria = categoria;
+    }
+
+    // equals para controlar si ese producto ya ha sido añadido al carrito
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o)
+            return true;
+        if (o == null || getClass() != o.getClass())
+            return false;
+        Producto producto = (Producto) o;
+        return Objects.equals(id, producto.id);
+    }
+
+    // HashCode para saber donde guardar el nuevo producto que se acaba de añadir al
+    // carrito
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
     }
 }

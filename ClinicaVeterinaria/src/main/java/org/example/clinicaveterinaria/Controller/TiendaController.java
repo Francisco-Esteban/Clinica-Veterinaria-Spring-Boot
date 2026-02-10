@@ -21,11 +21,19 @@ public class TiendaController {
         this.productoRepositorio = productoRepositorio;
     }
 
-    // MOSTRAR TODOS LOS PRODUCTOS DE LA BD
+    // MOSTRAR TODOS LOS PRODUCTOS DE LA BD (CON FILTRO OPCIONAL POR CATEGORIA)
 
     @GetMapping("/tienda")
-    public String mostrarTienda(Model model) {
-        model.addAttribute("productos", productoRepositorio.findAll());
+    public String mostrarTienda(@RequestParam(value = "categoria", required = false) String categoria,
+            Model model) {
+
+        if (categoria != null && !categoria.isEmpty()) {
+            model.addAttribute("productos", productoRepositorio.findByCategoria(categoria));
+        } else {
+            model.addAttribute("productos", productoRepositorio.findAll());
+        }
+
+        model.addAttribute("categoriaSeleccionada", categoria);
         return "tienda";
     }
 

@@ -30,36 +30,31 @@ public class ConfiguracionSeguridad {
         http
                 .authorizeHttpRequests(auth -> auth
 
-
                         .requestMatchers("/", "/home", "/noticias", "/tienda", "/tienda/{id}").permitAll()
                         .requestMatchers("/registro", "/login").permitAll()
                         .requestMatchers("/css/**", "/img/**", "/js/**").permitAll()
 
-
                         .requestMatchers("/cita", "/cita/**").hasAnyRole("CLIENTE", "ADMIN")
                         .requestMatchers("/carrito/**").hasAnyRole("CLIENTE", "ADMIN")
 
+                        .requestMatchers("/noticia/*/megusta").hasAnyRole("CLIENTE", "ADMIN")
 
                         .requestMatchers("/tienda/nuevo", "/tienda/guardar").hasRole("ADMIN")
                         .requestMatchers("/tienda/editar/**", "/tienda/borrar/**").hasRole("ADMIN")
 
-
                         .requestMatchers("/nueva", "/guardar", "/editar/**", "/borrar/**").hasRole("ADMIN")
 
-                        .anyRequest().authenticated()
-                )
+                        .anyRequest().authenticated())
                 .formLogin(form -> form
                         .loginPage("/login")
                         .defaultSuccessUrl("/", true)
                         .failureUrl("/login?error=true")
-                        .permitAll()
-                )
+                        .permitAll())
                 .logout(logout -> logout
                         .logoutUrl("/logout")
                         .logoutSuccessUrl("/")
                         .invalidateHttpSession(true)
-                        .permitAll()
-                );
+                        .permitAll());
 
         return http.build();
     }
