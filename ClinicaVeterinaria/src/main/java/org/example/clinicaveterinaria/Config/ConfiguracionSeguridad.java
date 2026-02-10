@@ -45,7 +45,6 @@ public class ConfiguracionSeguridad {
 
 
                         .requestMatchers("/nueva", "/guardar", "/editar/**", "/borrar/**").hasRole("ADMIN")
-                        .requestMatchers("/noticias/**").hasRole("ADMIN")
 
                         .anyRequest().authenticated()
                 )

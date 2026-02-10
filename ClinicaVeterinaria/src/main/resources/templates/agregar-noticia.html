@@ -13,12 +13,13 @@
 
     <h1>📰 Nueva noticia</h1>
 
-    <form th:action="@{/noticias/guardar}"
+    <form th:action="@{/guardar}"
           th:object="${noticia}"
           method="post"
           enctype="multipart/form-data"
           class="card">
 
+        <input type="hidden" th:field="*{id}">
 
         <label>Título</label>
         <input type="text" th:field="*{titulo}" required>
@@ -27,17 +28,16 @@
         <textarea th:field="*{contenido}" rows="6" required></textarea>
 
         <label>Imagen 1</label>
-        <input type="file" name="imagen1">
+        <input type="file" name="archivoImagen1">
 
         <label>Imagen 2</label>
-        <input type="file" name="imagen2">
+        <input type="file" name="archivoImagen2">
 
         <label>Imagen 3</label>
-        <input type="file" name="imagen3">
+        <input type="file" name="archivoImagen3">
 
         <label>Imagen 4</label>
-        <input type="file" name="imagen4">
-
+        <input type="file" name="archivoImagen4">
 
         <button type="submit" class="btn-detalle">
             Guardar noticia

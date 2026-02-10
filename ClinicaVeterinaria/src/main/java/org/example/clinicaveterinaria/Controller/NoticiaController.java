@@ -11,6 +11,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.time.LocalDate;
 
 @Controller
 public class NoticiaController {
@@ -64,11 +65,15 @@ public class NoticiaController {
     @PostMapping("/guardar")
     public String guardarNoticia(
             @ModelAttribute Noticia noticia,
-            @RequestParam("imagen1") MultipartFile img1,
-            @RequestParam("imagen2") MultipartFile img2,
-            @RequestParam("imagen3") MultipartFile img3,
-            @RequestParam("imagen4") MultipartFile img4
+            @RequestParam(value = "archivoImagen1", required = false) MultipartFile img1,
+            @RequestParam(value = "archivoImagen2", required = false) MultipartFile img2,
+            @RequestParam(value = "archivoImagen3", required = false) MultipartFile img3,
+            @RequestParam(value = "archivoImagen4", required = false) MultipartFile img4
     ) throws IOException {
+
+        if (noticia.getFechaPublicacion() == null) {
+            noticia.setFechaPublicacion(LocalDate.now());
+        }
 
         guardarImagen(img1, noticia, 1);
         guardarImagen(img2, noticia, 2);

@@ -1,0 +1,51 @@
+/* PÁGINA DE DETALLE DE PRODUCTO */
+
+.detalle-container {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 20px;
+}
+
+.detalle-card {
+    background-color: white;
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+/* IMAGEN DEL PRODUCTO EN DETALLE */
+
+.detalle-producto-img {
+    width: 100%;
+    max-width: 500px;
+    height: auto;
+    object-fit: contain;
+    border-radius: 8px;
+    margin-bottom: 30px;
+}
+
+.detalle-card h2 {
+    font-size: 32px;
+    margin-bottom: 20px;
+    color: #2e8b57;
+}
+
+.detalle-card p {
+    font-size: 18px;
+    line-height: 1.6;
+    margin-bottom: 15px;
+}
+
+.detalle-precio {
+    font-size: 28px;
+    color: #2e8b57;
+    font-weight: bold;
+    margin: 20px 0;
+}
+
+.detalle-stock {
+    font-size: 16px;
+    color: #666;
+    margin-bottom: 30px;
+}
